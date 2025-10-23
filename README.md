@@ -73,6 +73,35 @@ PORTAFOLIO/
 2. Asegúrate de que todos los archivos estén en la misma carpeta
 3. Abre `index.html` en tu navegador web
 
+### Ejecutar Localmente
+Para ejecutar el sitio web localmente, puedes usar cualquiera de estas opciones:
+
+#### Opción 1: Servidor HTTP Simple (Python)
+```bash
+# Navega al directorio del proyecto
+cd ruta/al/directorio/PORTAFOLIO
+
+# Ejecuta el servidor (requiere Python instalado)
+python -m http.server 8000
+```
+Luego abre http://localhost:8000 en tu navegador.
+
+#### Opción 2: Servidor HTTP Simple (Node.js)
+```bash
+# Instala http-server globalmente (opcional)
+npm install -g http-server
+
+# Navega al directorio del proyecto
+cd ruta/al/directorio/PORTAFOLIO
+
+# Ejecuta el servidor
+http-server
+```
+Luego abre http://localhost:8080 en tu navegador.
+
+#### Opción 3: Abrir directamente en el navegador
+Simplemente haz doble clic en el archivo `index.html` para abrirlo en tu navegador predeterminado.
+
 ### Personalización
 Para personalizar el portafolio:
 
