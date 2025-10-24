@@ -87,20 +87,12 @@ document.addEventListener('DOMContentLoaded', function() {
             email: email,
             mensaje: mensaje
         });
-
-        // Ocultar el formulario y mostrar mensaje de éxito
-        contactForm.style.display = 'none';
-        const successMessage = document.getElementById('success-message');
-        successMessage.style.display = 'block';
-
+        
+        // Mostrar mensaje de confirmación al usuario
+        alert('¡Mensaje enviado correctamente! Te contactaré pronto.');
+        
         // Limpiar el formulario después del envío
         contactForm.reset();
-
-        // Opcional: Ocultar mensaje de éxito después de 5 segundos y mostrar formulario nuevamente
-        setTimeout(() => {
-            successMessage.style.display = 'none';
-            contactForm.style.display = 'block';
-        }, 5000);
     }
     
     // Agregar evento de envío al formulario
@@ -116,10 +108,10 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Cambiar el estilo de la barra de navegación al hacer scroll
         if (scrollPosition > 100) {
-            navbar.style.backgroundColor = 'rgba(15, 23, 42, 0.98)';
+            navbar.style.backgroundColor = 'rgba(16, 44, 84, 0.98)';
             navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
         } else {
-            navbar.style.backgroundColor = 'rgba(15, 23, 42, 0.95)';
+            navbar.style.backgroundColor = 'rgba(16, 44, 84, 0.95)';
             navbar.style.boxShadow = 'none';
         }
         
@@ -157,55 +149,17 @@ document.addEventListener('DOMContentLoaded', function() {
         }, index * 200);
     });
     
-    // ===== GALERÍA DE IMÁGENES MODAL =====
-    // Funcionalidad para abrir imágenes en modal
-    const galleryItems = document.querySelectorAll('.gallery-item');
-    const modal = document.getElementById('image-modal');
-    const modalImage = document.getElementById('modal-image');
-    const closeModal = document.querySelector('.close-modal');
-
-    galleryItems.forEach(item => {
-        item.addEventListener('click', function() {
-            const fullImageSrc = this.getAttribute('data-full');
-            modalImage.src = fullImageSrc;
-            modal.style.display = 'block';
-            document.body.style.overflow = 'hidden'; // Prevenir scroll del body
-        });
-    });
-
-    // Cerrar modal al hacer clic en la X
-    closeModal.addEventListener('click', function() {
-        modal.style.display = 'none';
-        document.body.style.overflow = 'auto'; // Restaurar scroll del body
-    });
-
-    // Cerrar modal al hacer clic fuera de la imagen
-    modal.addEventListener('click', function(e) {
-        if (e.target === modal) {
-            modal.style.display = 'none';
-            document.body.style.overflow = 'auto';
-        }
-    });
-
-    // Cerrar modal con tecla Escape
-    document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape' && modal.style.display === 'block') {
-            modal.style.display = 'none';
-            document.body.style.overflow = 'auto';
-        }
-    });
-
     // ===== EFECTOS HOVER PARA TARJETAS =====
     // Agregar efectos interactivos a las tarjetas de proyectos y habilidades
     const cards = document.querySelectorAll('.skill-card, .project-card, .area-card');
-
+    
     cards.forEach(card => {
         // Efecto al pasar el mouse por encima
         card.addEventListener('mouseenter', function() {
             this.style.transform = 'translateY(-10px) scale(1.02)';
             this.style.transition = 'all 0.3s ease';
         });
-
+        
         // Efecto al quitar el mouse
         card.addEventListener('mouseleave', function() {
             this.style.transform = 'translateY(0) scale(1)';
@@ -222,35 +176,35 @@ document.addEventListener('DOMContentLoaded', function() {
     function validateNombre() {
         const nombre = nombreInput.value.trim();
         if (nombre.length < 2) {
-            nombreInput.style.borderColor = 'var(--error-color)';
+            nombreInput.style.borderColor = '#ef4444';
             return false;
         } else {
-            nombreInput.style.borderColor = 'var(--primary-color)';
+            nombreInput.style.borderColor = '#38bdf8';
             return true;
         }
     }
-
+    
     // Función para validar el campo de email
     function validateEmail() {
         const email = emailInput.value.trim();
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!emailRegex.test(email)) {
-            emailInput.style.borderColor = 'var(--error-color)';
+            emailInput.style.borderColor = '#ef4444';
             return false;
         } else {
-            emailInput.style.borderColor = 'var(--primary-color)';
+            emailInput.style.borderColor = '#38bdf8';
             return true;
         }
     }
-
+    
     // Función para validar el campo de mensaje
     function validateMensaje() {
         const mensaje = mensajeInput.value.trim();
         if (mensaje.length < 10) {
-            mensajeInput.style.borderColor = 'var(--error-color)';
+            mensajeInput.style.borderColor = '#ef4444';
             return false;
         } else {
-            mensajeInput.style.borderColor = 'var(--primary-color)';
+            mensajeInput.style.borderColor = '#38bdf8';
             return true;
         }
     }
@@ -339,18 +293,14 @@ document.addEventListener('DOMContentLoaded', function() {
                     const img = entry.target;
                     img.src = img.dataset.src;
                     img.classList.remove('lazy');
-                    img.classList.add('loaded');
                     imageObserver.unobserve(img);
                 }
             });
-        }, {
-            rootMargin: '50px 0px', // Cargar imágenes 50px antes de que entren en viewport
-            threshold: 0.01
         });
-
+        
         images.forEach(img => imageObserver.observe(img));
     }
-
+    
     // Inicializar carga perezosa de imágenes
     lazyLoadImages();
     
@@ -381,3 +331,4 @@ window.addEventListener('scroll', function() {
         // Aquí se ejecutarían las funciones de scroll optimizadas
     }, 10);
 });
+
